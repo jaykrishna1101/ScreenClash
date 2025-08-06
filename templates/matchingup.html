@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    {% if matdr %}
+
+        {% for match in matdr %}
+            {{match["id"]}} {{match["show1_id"]}} {{match["show2_id"]}}
+        {% endfor %}
+    
+    {% endif %}
+
+    <div>
+        <label>Show 1:</label>
+        <input type="text" oninput="searchShows(this.value, 'show1-select')">
+        <select id="show1-select" size="5"></select>
+      </div>
+    
+      <div>
+        <label>Show 2:</label>
+        <input type="text" oninput="searchShows(this.value, 'show2-select')">
+        <select id="show2-select" size="5"></select>
+      </div>
+
+      <button onclick="compareShows()">Compare</button>
+
+      <pre id="result"></pre>
+    </body>
+    </html>
+
+{% endblock %}

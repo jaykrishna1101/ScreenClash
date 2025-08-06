@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+    <div class="mx-auto p-2">
+        {% if details %}
+            <img class="mx-auto p-2" src={{poster}}>
+            <h3 class="detailsTitle" style="white-space: nowrap;">{{ details["name"] }}</h3>
+            {% if omdb["Year"] %}
+                <span class="year" style="white-space: nowrap;">({{ omdb["Year"] }})</span>
+            {% endif %}
+            <p>{{ details["overview"] }}</p>
+            {% if omdb["imdbRating"] %}
+                <p>IMDb: {{ omdb["imdbRating"] }} ({{ omdb["imdbVotes"] }})</p>
+            {% endif %}
+            {% if details["created_by"] %}
+                <p>
+                    Created by: 
+                    {% for i in details["created_by"] %}
+                        | {{ i["name"] }} |
+                    {% endfor %}
+                </p>
+            {% endif %}
+            {% if omdb["Actors"] %}
+                <p>Stars: {{ omdb["Actors"] }}</p>
+            {% endif %}
+            <p>Seasons: {{ details["number_of_seasons"] }} | Episodes: {{details["number_of_episodes"]}}</p>
+            {% if details["external_ids"]["imdb_id"] %}
+                <a href='https://www.imdb.com/title/{{ details["external_ids"]["imdb_id"] }}/' target="_blank" rel="noopener noreferrer" >Know more</a>
+            {% else %}
+                <a href='https://thetvdb.com/dereferrer/series/{{ details["external_ids"]["tvdb_id"] }}' target="_blank" rel="noopener noreferrer" >Know more</a>
+            {% endif %}
+            <div class="marginTop">
+                <form action='/details/{{details["id"]}}' method='post'>
+                    <button class="btn btn-primary" style="background-color: #3a7cda;" type="submit">Add to Clash</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+

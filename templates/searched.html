@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="image-grid">
+    {% for result in results %}
+        
+            <a class="searchResult" href='/details/{{ result["id"] }}'>
+                <img src="https://image.tmdb.org/t/p/w300{{ result['poster_path'] }}">
+                <h4>{{ result["name"] }}</h4>
+            </a>
+        
+    {% endfor %}
+</div>
+{% endblock %}
