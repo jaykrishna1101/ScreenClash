@@ -8,6 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required, search_tv_show, get_tv_show_details, omDetails
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'fallback-dev-key')
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
